@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>p5</title>
+  <style>
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 1.4;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      padding: 5px 10px;
+      font-size: 12px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h3>Aim: Write a program to generate binary code for the sequence abacbb, Given the
+    frequency count of a-37, b-38, c-25.</h3>
+
+  <pre>
+    <code>
+import java.util.*;
+
+class Node {
+    Character ch;
+    Integer freq;
+    Node left = null;
+    Node right = null;
+
+    Node(Character ch, Integer freq) {
+        this.ch = ch;
+        this.freq = freq;
+    }
+
+    Node(Character ch, Integer freq, Node left, Node right) {
+        this.ch = ch;
+        this.freq = freq;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+class HuffmanCode {
+    public static void createHuffmanTree(char[] c_arr, int[] f_arr) {
+        HashMap< Character, Integer> freq = new HashMap<>();
+        for (int i = 0; i < c_arr.length; i++) {
+            freq.put(c_arr[i], f_arr[i]);
+        }
+
+        // create Priority Queue
+        PriorityQueue< Node> pq = new PriorityQueue<>(Comparator.comparingInt(l -> l.freq));
+        for (Map.Entry< Character, Integer> entry : freq.entrySet()) {
+            pq.add(new Node(entry.getKey(), entry.getValue()));
+        }
+
+        while (pq.size() != 1) {
+            Node left = pq.poll();
+            Node right = pq.poll();
+            // internal Node
+            int sum = left.freq + right.freq;
+            pq.add(new Node(null, sum, left, right));
+        }
+
+        Node r = pq.peek();
+        // create hashmap for storing codewords
+        HashMap< Character, String> codewords = new HashMap<>();
+        printCodes(r, "", codewords);
+        System.out.println(codewords);
+        String s = encodeString("abacabb", codewords);
+        System.out.println("Encoding: " + s);
+        String s1 = decodeString(s, codewords);
+        System.out.println("Decoding: " + s1);
+    }
+
+    public static void printCodes(Node root, String str, HashMap<Character, String> codewords) {
+        if (root == null) {
+            return;
+        }
+        if (root.left == null && root.right == null) {
+            codewords.put(root.ch, str);
+        }
+        printCodes(root.left, str + "0", codewords);
+        printCodes(root.right, str + "1", codewords);
+    }
+
+    public static String encodeString(String text, HashMap<Character, String> codewords) {
+        StringBuilder s = new StringBuilder();
+        for (char c : text.toCharArray()) {
+            s.append(codewords.get(c));
+        }
+        return s.toString();
+    }
+
+    public static String decodeString(String text, HashMap<Character, String> codewords) {
+        StringBuilder s = new StringBuilder();
+        for (int i = 0, j = 0; i < text.length() && j < text.length(); i++) {
+            for (Map.Entry< Character, String> entry : codewords.entrySet()) {
+                if (entry.getValue().equals(text.substring(j, i + 1))) {
+                    s.append(entry.getKey());
+                    j = j + entry.getValue().length();
+                }
+            }
+        }
+        return s.toString();
+    }
+}
+
+public class Practical5 {
+    public static void main(String args[]) {
+        char c[] = {'a', 'b', 'c'};
+        int f[] = {37, 38, 25};
+        HuffmanCode.createHuffmanTree(c, f);
+    }
+}
+
+      
+    </code>
+  </pre>
+
+  <button class="copy-button" onclick="copyCodeSnippet()">Copy</button>
+  <script src="./script.js"></script>
+</body>
+</html>

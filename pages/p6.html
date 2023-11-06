@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>p6</title>
+    <style>
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 1.4;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Aim: Write a program to implement diagram coding for given text file.
+    </h3>
+
+    <pre>
+    <code>
+import java.util.*;
+import java.io.File;
+
+class DiagramCoding {
+    public static void createDictionary(String[] s, String[] code, String str_encode) {
+        LinkedHashMap< String, String> dict = new LinkedHashMap<>();
+        for (int i = 0; i < s.length; i++) {
+            dict.put(s[i], code[i]);
+        }
+        System.out.println(dict);
+        System.out.println("Text: " + str_encode);
+        String s1 = encodeString(str_encode, dict);
+        System.out.println("Encoding: " + s1);
+    }
+
+    public static String encodeString(String text, LinkedHashMap< String, String> dict) {
+        StringBuilder s = new StringBuilder();
+        for (int i = 0, j = i + 1; i < text.length() && j < text.length();) {
+            if (dict.containsKey(text.substring(i, j + 1))) {
+                int len = text.substring(i, j + 1).length();
+                s.append(dict.get(text.substring(i, j + 1)));
+                i = i + len;
+                j = i + 1;
+            } else {
+                j--;
+                int len = text.substring(i, j + 1).length();
+                s.append(dict.get(text.substring(i, j + 1)));
+                i = i + len;
+                j = i + 1;
+            }
+            if (j == text.length()) {
+                s.append(dict.get(text.substring(i)));
+            }
+        }
+        return s.toString();
+    }
+}
+
+public class Practical6 {
+    public static void main(String args[]) throws Exception {
+        File file = new File("diagram.txt");
+        Scanner sc = new Scanner(file);
+        StringBuilder text = new StringBuilder();
+        while (sc.hasNextLine()) {
+            text.append(sc.nextLine());
+        }
+
+        String s[] = {"a", "b", "c", "d", "r", "ab", "ac", "ad"};
+        String code[] = {"000", "001", "010", "011", "100", "101", "110", "111"};
+        DiagramCoding.createDictionary(s, code, text.toString());
+    }
+}
+
+    </code>
+  </pre>
+
+    <button class="copy-button" onclick="copyCodeSnippet()">Copy</button>
+    <script src="./script.js"></script>
+</body>
+
+</html>

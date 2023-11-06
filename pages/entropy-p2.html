@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>entropy p2</title>
+  <style>
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 1.4;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      padding: 5px 10px;
+      font-size: 12px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h3>Aim: Write a program to find the entropy of the given probability. 
+  </h3>
+
+  <pre>
+    <code>
+      #include< stdio.h>
+        #include< conio.h>
+        #include< string.h>
+        
+        void main()
+        {
+            int i, j, n1, n2, count = 0;
+            char s1[100], s2[100];
+        
+            clrscr();
+            printf("Enter a string:");
+            gets(s1);
+            printf("Enter a string:");
+            gets(s2);
+        
+            n1 = strlen(s1);
+            n2 = strlen(s2);
+        
+            for (i = 0, j = 0; i < n1 && j < n2; i++, j++)
+            {
+                if (s1 == s2)
+                {
+                    printf("String is prefix %s", s2, s1);
+                    count++;
+                }
+                else
+                {
+                    printf("String not a prefix");
+                }
+            }
+            getch();
+        }
+        
+    </code>
+  </pre>
+
+  <button class="copy-button" onclick="copyCodeSnippet()">Copy</button>
+  <script src="./script.js"></script>
+
+</body>
+</html>

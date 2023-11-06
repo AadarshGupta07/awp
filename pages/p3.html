@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>p3</title>
+  <style>
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 1.4;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      padding: 5px 10px;
+      font-size: 12px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h3>Aim: Given the code as sequence of characters and given the probability of
+    characters, Write a program to calculate average length of each code.</h3>
+
+  <pre>
+    <code>
+        #include< stdio.h>
+        #include< conio.h>
+        #include< string.h>
+        
+        void main()
+        {
+            char letter[5];
+            float p[5], avg_len = 0.0;
+            char c[5][100];
+            int i;
+        
+            clrscr();
+            printf("Enter letter:");
+            for (i = 0; i < 5; i++)
+            {
+                scanf("\n%c", &letter[i]);
+            }
+        
+            printf("Enter probability:\n");
+            for (i = 0; i < 5; i++)
+            {
+                scanf("%f", &p[i]);
+            }
+        
+            printf("Enter codeword value\n");
+            for (i = 0; i < 5; i++)
+            {
+                scanf("%s", c[i]);
+            }
+        
+            for (i = 0; i < 5; i++)
+            {
+                avg_len = avg_len + (p[i] * strlen(c[i]));
+            }
+        
+            printf("Average is %f", avg_len);
+            getch();
+        }
+        
+    </code>
+  </pre>
+
+  <button class="copy-button" onclick="copyCodeSnippet()">Copy</button>
+  <script src="./script.js"></script>
+</body>
+</html>

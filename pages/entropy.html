@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>entropy</title>
+  <style>
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 1.4;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      padding: 5px 10px;
+      font-size: 12px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>a: Aim: Write a program to find the entropy of the given probability. 
+    b: Aim: Write a program to find the number of occurrences of characters.
+
+  </h3>
+
+  <pre>
+    <code>
+
+      // Pract 1 a: Entropy Calculation
+      #include< stdio.h>
+      #include< conio.h>
+      #include< math.h>
+      
+      void main()
+      {
+          float p[5], Info[5], I;
+          int i, j;
+          clrscr();
+          printf("Enter the probability of 5 characters:");
+          for (i = 0; i < 5; i++)
+          {
+              scanf("%f", &p[i]);
+          }
+          for (j = 0; j < 5; j++)
+          {
+              Info[j] = p[j] * (log(1 / p[j]));
+          }
+          I = Info[0] + Info[1] + Info[2] + Info[3] + Info[4];
+          printf("The entropy of this probability is: %f", I);
+          getch();
+      
+          // Pract 1 b: Occurrences Calculation
+          int count;
+          char s[100];
+          clrscr();
+          printf("Enter a string:");
+          gets(s);
+          int n = strlen(s);
+          for (i = 0; i < n; i++)
+          {
+              count = 1;
+              if (s[i])
+              {
+                  for (j = i + 1; j < n; j++)
+                  {
+                      if (s[i] == s[j])
+                      {
+                          count++;
+                          s[j] = '\0';
+                      }
+                  }
+                  printf("'%c' -> %d\n", s[i], count);
+              }
+          }
+          getch();
+      }
+      
+        
+    </code>
+  </pre>
+
+  <button class="copy-button" onclick="copyCodeSnippet()">Copy</button>
+  <script src="./script.js"></script>
+</body>
+
+</html>
