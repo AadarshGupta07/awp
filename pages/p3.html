@@ -34,9 +34,9 @@
 
   <pre>
     <code>
-        #include< stdio.h>
-        #include< conio.h>
-        #include< string.h>
+        #include < stdio.h>
+        #include < conio.h>
+        #include < string.h>
         
         void main()
         {
@@ -47,18 +47,21 @@
         
             clrscr();
             printf("Enter letter:");
+            
             for (i = 0; i < 5; i++)
             {
                 scanf("\n%c", &letter[i]);
             }
         
             printf("Enter probability:\n");
+            
             for (i = 0; i < 5; i++)
             {
                 scanf("%f", &p[i]);
             }
         
-            printf("Enter codeword value\n");
+            printf("Enter codeword value:\n");
+        
             for (i = 0; i < 5; i++)
             {
                 scanf("%s", c[i]);
@@ -70,9 +73,9 @@
             }
         
             printf("Average is %f", avg_len);
+        
             getch();
         }
-        
     </code>
   </pre>
 

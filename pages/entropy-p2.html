@@ -34,9 +34,9 @@
 
   <pre>
     <code>
-      #include< stdio.h>
-        #include< conio.h>
-        #include< string.h>
+        #include < stdio.h>
+        #include < conio.h>
+        #include < string.h>
         
         void main()
         {
@@ -48,25 +48,28 @@
             gets(s1);
             printf("Enter a string:");
             gets(s2);
-        
             n1 = strlen(s1);
             n2 = strlen(s2);
         
             for (i = 0, j = 0; i < n1 && j < n2; i++, j++)
             {
-                if (s1 == s2)
+                if (s1[i] == s2[j])
                 {
-                    printf("String is prefix %s", s2, s1);
                     count++;
                 }
-                else
-                {
-                    printf("String not a prefix");
-                }
             }
-            getch();
-        }
         
+            if (count == n2)
+            {
+                printf("String %s is a prefix of %s", s2, s1);
+            }
+            else
+            {
+                printf("String %s is not a prefix of %s", s2, s1);
+            }
+        
+            getch();
+        }      
     </code>
   </pre>
 
