@@ -31,66 +31,22 @@
 </head>
 
 <body>
-  <h3>Aim: Use of Fourier transform for filtering the image. 
+  <h3>Aim: Load Offered
 </h3>
 
   <pre>
     <code>
-        % Reading Image
-        img = imread('image.jpg');
+      clc;
+      clear all;
+      B=0.05;
+      CL=3000;
+      OL=CL/(1-B);
 
-        % Convert the image to grayscale
-        img_gray = rgb2gray(img);
+      printf('Offred load is %d CCS\n&#39 ;,round(OL));
 
-        % Perform Fourier Transform on the grayscale image
-        img_gray_fft = fft2(img_gray);
+      printf('Overflow is %d CCS\N',round(OL)-CL);
 
-        % Perform Fourier Transform on the color image channels
-        img_fft(:,:,1) = fft2(img(:,:,1));
-        img_fft(:,:,2) = fft2(img(:,:,2));
-        img_fft(:,:,3) = fft2(img(:,:,3));
-
-        % Define the filter
-        filter_size = 100;
-        filter = fspecial('gaussian', [filter_size, filter_size], filter_size/5);
-
-        % Resize the filter to match the size of the input images
-        filter = imresize(filter, size(img_gray_fft));
-
-        % Apply the filter to the grayscale image in frequency domain
-        filtered_gray_fft = img_gray_fft .* filter;
-        % Apply the filter to the color image channels in frequency domain
-        filtered_fft(:,:,1) = img_fft(:,:,1) .* filter;
-        filtered_fft(:,:,2) = img_fft(:,:,2) .* filter;
-        filtered_fft(:,:,3) = img_fft(:,:,3) .* filter;
-
-        % Perform Inverse Fourier Transform to obtain the filtered images
-        filtered_gray = real(ifft2(filtered_gray_fft));
-        filtered_color = real(ifft2(filtered_fft));
-
-        % Adjust the intensity range of the filtered color image channels
-        filtered_color_adjusted(:,:,1) = imadjust(filtered_color(:,:,1));
-        filtered_color_adjusted(:,:,2) = imadjust(filtered_color(:,:,2));
-        filtered_color_adjusted(:,:,3) = imadjust(filtered_color(:,:,3));
-
-        % Adjust the intensity range of the filtered grayscale image
-        filtered_gray_adjusted = imadjust(filtered_gray);
-
-        % Display the original and filtered images
-        figure;
-        subplot(2, 2, 1);
-        imshow(img);
-        title('Original Color Image');
-        subplot(2, 2, 2);
-        imshow(filtered_color_adjusted);
-        title('Filtered Color Image');
-        subplot(2, 2, 3);
-        imshow(img_gray);
-        title('Original Grayscale Image');
-        subplot(2, 2, 4);
-        imshow(filtered_gray_adjusted);
-        title('Filtered Grayscale Image');
-
+      // example : remove that space after 39 if not working
     </code>
   </pre>
 
