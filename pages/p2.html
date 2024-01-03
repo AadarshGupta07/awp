@@ -31,39 +31,34 @@
 </head>
 
 <body>
-  <h3>Implement contrast adjustment of an image. Implement Histogram processing and equalization.
-  </h3>
+  <h3>Calculate the bit rate</h3>
 
   <pre>
-    <code>
-      % (a) Contrast Adjustment
-      i =imread('image.jpg'); 
+    <code> 
+      clc;
+      clear all;
+      symbol_Rate=19200;// symbol per second
+      //symbol_Rate = input('enter the value of symbol_Rate');
+      states=64;
+      //solution
+      Bits_symbol=log2(states);
+      BitRate=Bits_symbol*symbol_Rate;
+      printf('Bit Rate = %1f kbps',BitRate/1000);
+
+
+      OR
+
+
+      clc;
+      clear all;
+      //symbol_Rate=19200;// symbol per second
+      symbol_Rate = input('enter the value of symbol_Rate');
+      states=64;
+      //solution
+      Bits_symbol=log2(states);
+      BitRate=Bits_symbol*symbol_Rate;
+      printf('Bit Rate = %1f kbps',BitRate/1000);
       
-      % Increase Contrast
-      a= i*2; 
-      
-      % Decrease Contrast
-      b=i*0.5;   
-      
-      % Display of image, Subplot with 1 row and 3 columns 
-      subplot(1,3,1),imshow(i),title('Original Image');
-      subplot(1,3,2),imshow(a),title('Increased in Contrast');
-      subplot(1,3,3),imshow(b),title('Decreased in Contrast');
-
-      % (b) Histogram Equalization
-      % Reading Image
-      a =imread('image.jpg'); 
-
-      % Perform Histogram Equalization on Image Perform histogram equalization on image
-      heq = histeq(a); 
-
-      % Display the Original & Equalized Images side by side
-      subplot (221); imshow(a); title('Original Image');
-      subplot (222); imshow(heq); title('Equalized Image'); 
-
-      % Display the Histogram of Original & Equalized Images side by side
-      subplot (223); imhist(a); title('Histogram of Original Image');
-      subplot (224); imhist(heq); title('Histogram of Equalized Image');
     </code>
   </pre>
 
