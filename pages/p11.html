@@ -31,64 +31,26 @@
 </head>
 
 <body>
-    <h3>Aim: Write a program to implement diagram coding for given text file.
+    <h3>Aim: To determine free space and reflected surface attenuation
     </h3>
 
     <pre>
     <code>
-import java.util.*;
-import java.io.File;
-
-class DiagramCoding {
-    public static void createDictionary(String[] s, String[] code, String str_encode) {
-        LinkedHashMap< String, String> dict = new LinkedHashMap<>();
-        for (int i = 0; i < s.length; i++) {
-            dict.put(s[i], code[i]);
-        }
-        System.out.println(dict);
-        System.out.println("Text: " + str_encode);
-        String s1 = encodeString(str_encode, dict);
-        System.out.println("Encoding: " + s1);
-    }
-
-    public static String encodeString(String text, LinkedHashMap< String, String> dict) {
-        StringBuilder s = new StringBuilder();
-        for (int i = 0, j = i + 1; i < text.length() && j < text.length();) {
-            if (dict.containsKey(text.substring(i, j + 1))) {
-                int len = text.substring(i, j + 1).length();
-                s.append(dict.get(text.substring(i, j + 1)));
-                i = i + len;
-                j = i + 1;
-            } else {
-                j--;
-                int len = text.substring(i, j + 1).length();
-                s.append(dict.get(text.substring(i, j + 1)));
-                i = i + len;
-                j = i + 1;
-            }
-            if (j == text.length()) {
-                s.append(dict.get(text.substring(i)));
-            }
-        }
-        return s.toString();
-    }
-}
-
-public class Practical6 {
-    public static void main(String args[]) throws Exception {
-        File file = new File("diagram.txt");
-        Scanner sc = new Scanner(file);
-        StringBuilder text = new StringBuilder();
-        while (sc.hasNextLine()) {
-            text.append(sc.nextLine());
-        }
-
-        String s[] = {"a", "b", "c", "d", "r", "ab", "ac", "ad"};
-        String code[] = {"000", "001", "010", "011", "100", "101", "110", "111"};
-        DiagramCoding.createDictionary(s, code, text.toString());
-    }
-}
-
+        clc;
+        clear all;
+        hb=100; //in feets(height of BS antenna)
+        hm=5; //in feets (height of mobile antenna)
+        f=881.52; //in mhz
+        lamda=1.116; //IN feet
+        d=5000; //in feet
+        Gb=10^0.8; //8db (BSA antenna gain)
+        Gm=10^0; //0db(mobile antenna gain)
+        free_atten=(4*%pi*d/lamda)^2*(Gb*Gm)^-1;
+        y=round(10*log10(free_atten));
+        printf('Free space attenuation is %d dB \n',y);
+        reflected_atten=(d^4/(hb*hm)^2)^(Gb^Gm)^-1;
+        x=round(10*log10(reflected_atten));
+        printf('Reflecting surface attenuation is %d dB \n',x);
     </code>
   </pre>
 
