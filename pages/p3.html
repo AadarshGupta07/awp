@@ -29,71 +29,36 @@
   </style>
 </head>
 <body>
-  <h3>Aim: Implement the various low pass and high pass filtering mechanisms.</h3>
+  <h3>Aim: Cellular cluster of seven cells 
+  </h3>
 
   <pre>
     <code>
-        % Low Pass Filter
-        img = imread('image.jpg');
-
-        % Convert the image to grayscale
-        img_gray = rgb2gray(img);
-
-        % Define the low-pass filter kernel
-        kernel = ones(3, 3) / 9;
-
-        % Apply the low-pass filter to the color image
-        filtered_color = imfilter(img, kernel);
-
-        % Apply the low-pass filter to the grayscale image
-        filtered_gray = imfilter(img_gray, kernel);
-
-        % Display the original and filtered images
-        figure;
-        subplot(2, 2, 1);
-        imshow(img);
-        title('Original Color Image');
-        subplot(2, 2, 2);
-        imshow(filtered_color);
-        title('Low-Pass Filtered Color Image');
-        subplot(2, 2, 3);
-        imshow(img_gray);
-        title('Original Grayscale Image');
-        subplot(2, 2, 4);
-        imshow(filtered_gray);
-        title('Low-Pass Filtered Grayscale Image');
-
-        
-        % High Pass Filter
-        img = imread('image.jpg');
-
-        % Convert the image to grayscale
-        img_gray = rgb2gray(img);
-
-        % Define the high-pass filter kernel
-        kernel = [-1 -1 -1; -1 8 -1; -1 -1 -1];
-
-        % Apply the high-pass filter to the color image
-        filtered_color = imfilter(img, kernel);
-
-        % Apply the high-pass filter to the grayscale image
-        filtered_gray = imfilter(img_gray, kernel);
-
-        % Display the original and filtered images
-        figure;
-        subplot(2, 2, 1);
-        imshow(img);
-        title('Original Color Image');
-        subplot(2, 2, 2);
-        imshow(filtered_color);
-        title('High-Pass Filtered Color Image');
-        subplot(2, 2, 3);
-        imshow(img_gray);
-        title('Original Grayscale Image');
-        subplot(2, 2, 4);
-        imshow(filtered_gray);
-        title('High-Pass Filtered Grayscale Image');
-
+      r=2;
+      pi=3.14;
+      //t=0:1:6
+      t=linspace(0,2*pi,7);
+      ax=0+(2*cos(t));
+      ay=0+(2*sin(t));
+      plot(ax,ay)
+      ax1=0+(2*cos(t));
+      ay1=(-1.73*2)+(2*sin(t));
+      plot(ax1,ay1)
+      ax2=0+(2*cos(t));
+      ay2=(1.73*2)+(2*sin(t));
+      plot(ax2,ay2)
+      ax3=(3*r/2)+(2*cos(t));
+      ay3=(-1.73*r/2)+(2*sin(t));
+      plot(ax3,ay3)
+      ax4=(3*r/2)+(2*cos(t));
+      ay4=(1.73*r/2)+(2*sin(t));
+      plot(ax4,ay4)
+      ax5=(-3*r/2)+(2*cos(t));
+      ay5=(1.73*r/2)+(2*sin(t));
+      plot(ax5,ay5)
+      ax6=(-3*r/2)+(2*cos(t));
+      ay6=(-1.73*r/2)+(2*sin(t));
+      plot(ax6,ay6)
       
     </code>
   </pre>
