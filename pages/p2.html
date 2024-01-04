@@ -31,32 +31,21 @@
 </head>
 
 <body>
-  <h3>Calculate the bit rate</h3>
+  <h3>Aim: Experiments on Agriculture IOT (Soil moisture).</h3>
 
   <pre>
     <code> 
-      clc;
-      clear all;
-
-      symbol_Rate=19200;// symbol per second
-      states=64;
-      
-      Bits_symbol=log2(states);
-      BitRate=Bits_symbol*symbol_Rate;
-      printf('Bit Rate = %1f kbps',BitRate/1000);
-
-
-      // OR
-
-
-      clc;
-      clear all;
-      symbol_Rate = input('enter the value of symbol_Rate');
-      states=64;
-      Bits_symbol=log2(states);
-      BitRate=Bits_symbol*symbol_Rate;
-      printf('Bit Rate = %1f kbps',BitRate/1000);
-      // for 2nd code take input:  2104
+    int moistureValue;
+    float moisture_percentage; void setup() {
+      Serial.begin(9600);
+    }
+    void loop() {
+      moistureValue=analogRead(A0); 
+      moisture_percentage=(moistureValue/539.00)*100;
+      Serial.print("\n moistureValue :");
+      Serial.print(moisture_percentage); Serial.print("%");
+      delay(1000);//Waitfor 1000 millisecond(s)
+    }
     </code>
   </pre>
 

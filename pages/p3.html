@@ -29,43 +29,27 @@
   </style>
 </head>
 <body>
-  <h3>Aim: Cellular cluster of seven cells 
+  <h3>Aim: Temperature Monitoring Using IOT. 
   </h3>
 
   <pre>
     <code>
-      r=2;
-      pi=3.14;
-
-      t=linspace(0,2*pi,7);
-      ax=0+(2*cos(t));
-      ay=0+(2*sin(t));
-      plot(ax,ay)
-
-      ax1=0+(2*cos(t));
-      ay1=(-1.73*2)+(2*sin(t));
-      plot(ax1,ay1)
-
-      ax2=0+(2*cos(t));
-      ay2=(1.73*2)+(2*sin(t));
-      plot(ax2,ay2)
-
-      ax3=(3*r/2)+(2*cos(t));
-      ay3=(-1.73*r/2)+(2*sin(t));
-      plot(ax3,ay3)
-
-      ax4=(3*r/2)+(2*cos(t));
-      ay4=(1.73*r/2)+(2*sin(t));
-      plot(ax4,ay4)
-
-      ax5=(-3*r/2)+(2*cos(t));
-      ay5=(1.73*r/2)+(2*sin(t));
-      plot(ax5,ay5)
-      
-      ax6=(-3*r/2)+(2*cos(t));
-      ay6=(-1.73*r/2)+(2*sin(t));
-      plot(ax6,ay6)
-      
+      int celsius=0;
+      int fahrenheit=0;
+      void setup() {
+        pinMode(A0,INPUT);
+        Serial.begin(9600);
+      }
+      void loop() {
+        celsius= map(((analogRead(A0)-20)*3.04),0,1023,-40,125);
+        fahrenheit=((celsius *9)/5+32);
+        Serial.print(celsius);
+        
+        Serial.print("\nc,");
+        Serial.print(fahrenheit);
+        Serial.print("F\n");
+        delay(1000);
+      }
     </code>
   </pre>
 
